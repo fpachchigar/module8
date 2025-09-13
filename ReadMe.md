@@ -32,7 +32,8 @@ The blogging application includes the following entities:
   - CreatedAt
 
 ### ERD Diagram
-<img width="1024" height="1536" alt="ChatGPT Image Sep 13, 2025 at 11_46_55 AM" src="https://github.com/user-attachments/assets/04688f53-f155-437a-b4a5-87402c4cb5b0" />
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/f633759c-a7d8-4045-9552-45441dbd248d" />
+
 
 
 ---
@@ -79,6 +80,6 @@ erDiagram
     POSTS ||--o{ LIKES : "receives"
 
 ---
-
+<img width="1024" height="1536" alt="ChatGPT Image Sep 13, 2025 at 11_46_55 AM" src="https://github.com/user-attachments/assets/dc0344fb-80e8-473b-8637-7858cb7c7069" />
 ## 📌 Flowchart (User Interaction)
 ![Flowchart](A_flowchart_in_the_image_illustrates_the_sequence_.png)
