@@ -32,7 +32,8 @@ The blogging application includes the following entities:
   - CreatedAt
 
 ### ERD Diagram
-![Logical Model](logical model.png)
+<img width="1024" height="1536" alt="ChatGPT Image Sep 13, 2025 at 11_46_55 AM" src="https://github.com/user-attachments/assets/04688f53-f155-437a-b4a5-87402c4cb5b0" />
+
 
 ---
 
