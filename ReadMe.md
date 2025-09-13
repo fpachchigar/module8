@@ -37,50 +37,45 @@ The blogging application includes the following entities:
 ---
 
 ## 📌 Physical Model (SQL Schema)
+erDiagram
+    USERS {
+        INT UserID PK
+        VARCHAR Username
+        VARCHAR Email
+        VARCHAR PasswordHash
+        VARCHAR ProfileImage
+        TIMESTAMP CreatedAt
+    }
 
-```sql
--- Users Table
-CREATE TABLE Users (
-    UserID INT PRIMARY KEY AUTO_INCREMENT,
-    Username VARCHAR(50) NOT NULL UNIQUE,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    PasswordHash VARCHAR(255) NOT NULL,
-    ProfileImage VARCHAR(255),
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    POSTS {
+        INT PostID PK
+        INT UserID FK
+        VARCHAR Title
+        TEXT Description
+        VARCHAR ImageURL
+        TIMESTAMP CreatedAt
+    }
 
--- Posts Table
-CREATE TABLE Posts (
-    PostID INT PRIMARY KEY AUTO_INCREMENT,
-    UserID INT NOT NULL,
-    Title VARCHAR(255) NOT NULL,
-    Description TEXT,
-    ImageURL VARCHAR(255),
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
-);
+    LIKES {
+        INT UserID FK
+        INT PostID FK
+        TIMESTAMP CreatedAt
+        PK(UserID, PostID)
+    }
 
--- Likes Table (Composite Primary Key to avoid duplicates)
-CREATE TABLE Likes (
-    UserID INT NOT NULL,
-    PostID INT NOT NULL,
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (UserID, PostID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE,
-    FOREIGN KEY (PostID) REFERENCES Posts(PostID) ON DELETE CASCADE
-);
+    COMMENTS {
+        INT CommentID PK
+        INT UserID FK
+        INT PostID FK
+        TEXT Content
+        TIMESTAMP CreatedAt
+    }
 
--- Comments Table
-CREATE TABLE Comments (
-    CommentID INT PRIMARY KEY AUTO_INCREMENT,
-    UserID INT NOT NULL,
-    PostID INT NOT NULL,
-    Content TEXT NOT NULL,
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE,
-    FOREIGN KEY (PostID) REFERENCES Posts(PostID) ON DELETE CASCADE
-);
-```
+    USERS ||--o{ POSTS : "creates"
+    USERS ||--o{ COMMENTS : "writes"
+    USERS ||--o{ LIKES : "likes"
+    POSTS ||--o{ COMMENTS : "has"
+    POSTS ||--o{ LIKES : "receives"
 
 ---
 
